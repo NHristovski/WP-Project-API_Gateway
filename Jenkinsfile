@@ -58,7 +58,7 @@ pipeline {
 
         stage('Start the application'){
             steps {
-                sh 'ssh -o StrictHostKeyChecking=no nhristov@10.10.10.57 "docker run --name api-gateway -p 8762:8762 -d nikolancaid/api-gateway:latest"'
+                sh 'ssh -o StrictHostKeyChecking=no nhristov@10.10.10.57 "docker run --name api-gateway --network=host -d nikolancaid/api-gateway:latest"'
             }
         }
     }
