@@ -1,5 +1,6 @@
 package hristovski.nikola.api_gateway.filters;
 
+import com.netflix.discovery.converters.Auto;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -8,6 +9,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class UsernameFilter extends ZuulFilter {
 
-    private final JwtConfig jwtConfig;
+    @Autowired
+    private JwtConfig jwtConfig;
 
 
     @Override
