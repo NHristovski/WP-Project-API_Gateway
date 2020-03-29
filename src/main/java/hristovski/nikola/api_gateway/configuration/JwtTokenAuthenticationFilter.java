@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,11 +64,9 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
             String username = claims.getSubject();
             if (username != null) {
 
-                log.info("Uername: {}", username);
                 @SuppressWarnings("unchecked")
                 List<String> authorities = (List<String>) claims.get("authorities");
 
-                log.info("Authorities: {}", authorities);
                 // 5. Create auth object
                 // UsernamePasswordAuthenticationToken: A built-in object, used by spring to represent the current authenticated / being authenticated user.
                 // It needs a list of authorities, which has type of GrantedAuthority interface, where SimpleGrantedAuthority is an implementation of that interface
@@ -78,6 +77,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
                 // Now, user is authenticated
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 log.info("Successful auth");
+
             }else{
                 log.info("Username was null!");
             }

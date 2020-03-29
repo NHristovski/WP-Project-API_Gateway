@@ -17,12 +17,6 @@ public class CORSFilter implements Filter {
 
     private FilterConfig config;
 
-    public static final String CREDENTIALS_NAME = "Access-Control-Allow-Credentials";
-    public static final String ORIGIN_NAME = "Access-Control-Allow-Origin";
-    public static final String METHODS_NAME = "Access-Control-Allow-Methods";
-    public static final String HEADERS_NAME = "Access-Control-Allow-Headers";
-    public static final String MAX_AGE_NAME = "Access-Control-Max-Age";
-
     @Override
     public void destroy() {
 
@@ -39,8 +33,8 @@ public class CORSFilter implements Filter {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,  Authorization");
-        response.setHeader("Access-Control-Expose-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,  Authorization");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,  Authorization, roles");
+        response.setHeader("Access-Control-Expose-Headers", "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,  Authorization, roles");
 
         log.info("headers {}", ((HttpServletResponse) resp).getHeaderNames());
 
